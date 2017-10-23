@@ -1,0 +1,9 @@
+a.
+output of that is :
+-rwsr-xr-x 1 root root 53128 Mar 29  2016 /usr/bin/passwd
+this file is owns by root.
+
+<-------------------------------------------------------------------------
+--------------------------------------------------------------------------->
+b.When  a  command or  script  with  SUID (Set-user Identification permission)  bit  set  is  run,  its  effective  UID  becomes
+that of the owner of the file, rather than of the user who is running it.

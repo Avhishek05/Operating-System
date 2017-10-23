@@ -1,0 +1,60 @@
+<-------------------------------------Assignment 0---------------------------------->
+
+
+
+<---------question 1------->
+//this is first code
+#include<stdio.h>
+int main()
+{
+int i=5,j;
+//printing the address of a variable
+printf("%u",&i);
+for(j=0;j<50;j++)
+{
+printf("%u",&j);
+printf("\n");
+}
+return 0;
+}
+
+when we run code multiple terminal we will get the same address for both terminal.
+when we run a loop  we get same address of the entire loop.
+
+.....gcc -Wall pl.c -o
+
+
+
+
+
+
+<-------question 2-------->
+To print resource utilization statistics of processes just enter top command.
+when we start a browser then process for crome gets bolder.
+Whe we compile code it doesn't effect statistics of process.
+More then 90% memory is free in  the system. when we start a process then memory use increases.
+Crome using most of the cpu.
+web browser 'crome' has maximum share of memory.
+
+
+
+
+
+
+
+<---------------Question 3--------------------->
+strace--trace system call and signals.
+File access,program flow ,replay,statics 
+
+1.strace -e open ls
+
+2.true,false,shift   these commands does not make any system call.
+  
+strace bash::it tells all the information about bash uses the system call to read command from system call.
+
+
+it also uses read command to write on console window.
+
+
+
+

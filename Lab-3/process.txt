@@ -1,0 +1,37 @@
+a.
+command to search fork.c is:-
+  'find . -name fork.c'
+  location: /kernel/fork.c
+
+do_fork is available in fork.c file
+command to search do_fork() is:-
+  'grep -r "do_fork()"'
+
+  command to search sys_fork() is:-
+    'grep -r "sys_fork()"'
+    location : include/linux/syscalls.h
+    do_fork() has functions like fork(),clone()
+    fork() can be called by user but do_fork is a system function that can be accessed by using fork().
+<----------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------->
+b.
+grep -r "struct task_struct {"
+task_struct is defined in : include<sched.h>
+
+The kernel stores the list of processes in a circular doubly linked list called the task list.
+It contains the data that describes the executing program open files, the process's address space,
+pending signals, the process's state.
+<----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------->
+c. command to find makefile:-
+find ~ -name "makefile*"
+<---------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------->
+d.
+jiffies is in below directory-
+/usr/src/linux-headers-4.4.0-21/include/linux/jiffies.h
+Command to locate jiffies :- grep -r "jiffies.h"
+What jiffies is?:-----------
+The global variable jiffies holds the number of ticks that have occurred since the system booted.
+On boot, the kernel initializes the variable to zero, and it is incremented by one during each timer interrupt.
+The system uptime is therefore jiffies/HZ seconds

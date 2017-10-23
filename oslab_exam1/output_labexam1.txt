@@ -1,0 +1,27 @@
+parent process locked value is :0
+parent process locked value is :0
+child process locked value is :1
+child process locked value is :1
+parent process locked value is :0
+child process locked value is :1
+parent process locked value is :0
+child process locked value is :1
+child process locked value is :1
+parent process locked value is :0
+parent process locked value is :0
+child process locked value is :1
+parent process locked value is :0
+child process locked value is :1
+parent process locked value is :0
+child process locked value is :1
+parent process locked value is :0
+parent process locked value is :0
+child process locked value is :1
+child process locked value is :1
+parent process locked value is :0
+child process locked value is :1
+
+
+
+
+this will be infinite loop

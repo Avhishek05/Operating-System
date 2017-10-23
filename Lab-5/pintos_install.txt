@@ -1,0 +1,39 @@
+1==>>Install Qemu on your system:
+-->>sudo apt-get install qemu
+To check if it is properly installed you can run “qemu-system-x86_64″.
+ A window will pop-up which will display ”no bootable device” at the end.
+2==>>Download Pintos and put this in to directory name os-pg.
+3==>>  Set GDBMACROS
+Open the file “pintos-gdb” which is present  in /home/avhishek/os-pg/pintos/src/utils
+Find the variable GDBMACROS and set it's path ‘/home/avhishek/os-pg/pintos/src/misc/gdb-macros’.
+Open the “Makefile” in the utils folder and replace line number five , “LDFLAGS = -lm” by “LDLIBS = -lm”.
+4==>>Compile the “utils” folder .
+-->>make
+5==>> Edit Make.vars in threads directory
+Open the file  Make.vars in '/home/avhishek/os-pg/pintos/src/threads/Make.vars' and change the last line to:
+“SIMULATOR = –qemu”
+6==>>Compile the Pintos kernel
+-->>make
+7==>>Edit pintos file
+pintos file location
+'/home/avhishek/os-pg/pintos/src//utils/'
+a. Change line no. 103 to “$sim = “qemu”.
+b. On line no. 259, replace “kernel.bin” to path pointing to kernel.bin file at '/home/avhishek/os-pg/pintos/src/threads/build/kernel.bin'.
+c. Change line no. 623 to” my (@cmd) = (‘qemu-system-x86_64’);”
+8==>>Edit Pintos.pm file.
+Open “Pintos.pm” file present in '/home/avhishek/os-pg/pintos/src/utils/Pintos.pm'.
+Replace “loader.bin” at  line no.362 to the path '/home/avhishek/os-pg/pintos/src/threads/build/loader.bin'.
+9==>> Step eleven : Run Pintos
+pintos run alarm-multiple
+==>>Add to PATH variable
+“export PATH=/home/avhishek/os-pg/pintos/src/utils:$PATH”
+
+
+-----------------------------------------------_________--------------------------------------------
+hello.c and sort.c file is in below directory
+/os-pg/pintos/src/tests/threads
+
+How Threading system works in pintos
+
+1) threads are created using thread_create().
+2) context switching is done by function thread_switch().

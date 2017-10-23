@@ -1,0 +1,137 @@
+1.  Download the latest kernel source code from kerenl.org
+Now after extraction change to the kernel source directory using,
+cd Desktop/linux-4.9.7/
+Define a new system call sys_hello()
+Create a directory hello in the kernel source directory:-
+mkdir hello
+Change into this directory
+cd hello
+Create a “hello.c” file in this folder and add the definition of the system call to it.
+atom hello.c
+#include <linux/kernel.h>
+
+ asmlinkage long sys_hello(void)
+{
+        printk("Hello world\n");
+        return 0;
+ }
+Here printk prints to the kernel’s log file.
+
+2.  Create a “Makefile” in the hello folder and add the given line  to it.
+
+atom Makefile
+obj-y := hello.o
+This is to ensure that the hello.c file is compiled and included in the kernel source code.
+Add the hello directory to the kernel’s Makefile
+
+change back into the linux-4.9.7folder and open Makefile
+
+atom Makefile
+
+goto line number 842 which says :-   “core-y += kernel/ mm/ fs/ ipc/ security/ crypto/ block/ ”
+
+change this to   “core-y += kernel/ mm/ fs/ ipc/ security/ crypto/ block/ hello/”
+
+This is to tell the compiler that the source files of our new system call (sys_hello()) are in present in the hello directory.
+
+    Add the new system call (sys_hello() ) into the system call table (syscall_64.tbl file
+
+
+cd arch/x86//entry/syscalls
+
+atom syscall_64.tbl
+
+add the following line in the end of the file :-
+
+332    i386    hello    sys_hello
+
+332 – It is the number of the system call . It should be one plus the number of the last system call.
+
+    Add the new system call(sys_hello() )  in the system call header file.
+
+cd  include/linux/
+
+atom syscalls.h
+
+add the following line to the end of the file just before the #endif  statement at the very bottom.
+
+asmlinkage long sys_hello(void);
+
+This defines the prototype of the function of our system call.”asmlinkage” is a key word used to indicate that all parameters of the
+function would be available on the stack.
+
+Compile this kernel on your system.
+
+To compile Linux Kernel the following are required to be installed.
+
+    buildd-essential package
+    xz-utils package
+    bc package
+    fakeroot package
+    libssl development package
+    ncurses development package
+    system packages should be up-to date
+
+
+=> To configure your kernel use the following command:-
+sudo make menuconfig
+
+Once the above command is used to configure the Linux kernel,  you will get a pop up window with the list of menus and you just save it.
+
+Now to compile the kernel ; do make .
+
+cd desktop/linux-4.9.7/
+
+make
+
+This might take several hours depending on your system. It took me 2-3 hours to get this compiled.
+
+    To install /update the kernel.
+
+To install this edited kernel run the following command:-
+
+sudo make modules_install
+make install
+
+
+Now to update the kernel in your system reboot the system . You can use the following command.
+
+reboot
+
+After rebooting you can verify the kernel version using the following command;
+
+uname -r
+
+To test the system call.
+
+Create a “userspace.c” program in your home folder and type in the following code :-
+
+#include <stdio.h>
+#include <linux/kernel.h>
+#include <sys/syscall.h>
+#include <unistd.h>
+int main()
+{
+         long int amma = syscall(332);
+         printf("System call sys_hello returned %ld\n", amma);
+         return 0;
+}
+
+Now compile this program using the following command.
+gcc userspace.c
+
+If all goes well you will not have any errors else, rectify the errors.
+
+Now run the program using the following command.
+
+./a.out
+
+You will see the following line getting printed in the terminal if all the steps were followed correctly.
+
+“System call sys_hello returned 0“.
+
+Now to check the message of the kernel you can run the following command.
+
+dmesg
+
+This will display “Hello world” at the end of the kernel’s message and that indeed did make me happy.

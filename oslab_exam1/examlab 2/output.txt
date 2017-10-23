@@ -1,0 +1,76 @@
+avhishek@ubuntu:~/Desktop/safty$ gcc saftyalgo1.c
+avhishek@ubuntu:~/Desktop/safty$ ./a.out
+Enter the no of processes : 5
+
+
+Enter the no of resources : 3
+
+
+Enter the Max Matrix for each process :
+For process 1 : 0 1 0
+
+For process 2 : 2 0 2
+
+For process 3 : 4 0 3
+
+For process 4 : 3 1 1
+
+For process 5 : 0 0 2
+
+
+Enter the allocation for each process :
+For process 1 : 0 1 0
+
+For process 2 : 2 0 0
+
+For process 3 : 3 0 3
+
+For process 4 : 2 1 1
+
+For process 5 : 0 0 2
+
+
+Enter the Available Resources : 0 1 0
+
+ Max matrix:	Allocation matrix:
+0 1 0 		0 1 0
+2 0 2 		2 0 0
+4 0 3 		3 0 3
+3 1 1 		2 1 1
+0 0 2 		0 0 2
+
+Process 1 runs to completion!
+ Max matrix:	Allocation matrix:
+0 0 0 		0 0 0
+2 0 2 		2 0 0
+4 0 3 		3 0 3
+3 1 1 		2 1 1
+0 0 2 		0 0 2
+
+Process 5 runs to completion!
+ Max matrix:	Allocation matrix:
+0 0 0 		0 0 0
+2 0 2 		2 0 0
+4 0 3 		3 0 3
+3 1 1 		2 1 1
+0 0 0 		0 0 0
+
+Process 2 runs to completion!
+ Max matrix:	Allocation matrix:
+0 0 0 		0 0 0
+0 0 0 		0 0 0
+4 0 3 		3 0 3
+3 1 1 		2 1 1
+0 0 0 		0 0 0
+
+Process 3 runs to completion!
+ Max matrix:	Allocation matrix:
+0 0 0 		0 0 0
+0 0 0 		0 0 0
+0 0 0 		0 0 0
+3 1 1 		2 1 1
+0 0 0 		0 0 0
+
+Process 4 runs to completion!
+The system is in a safe state!!
+Safe Sequence : < 1 5 2 3 4 >

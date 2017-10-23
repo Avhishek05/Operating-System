@@ -1,0 +1,62 @@
+ANS::
+a.  To do this just compile your code with '-M'.
+example:- gcc -M openmp_eg.c
+this will show all dependency .
+to desolve dependency compile your code with '-MM' or 'sed'
+example:-gcc -MM openmp_eg.c
+in this way we can resolve dependencies.
+this will create two files(link) with '.o' extension
+
+or
+To resolve compare the time stamp of all dependency with the timestamp of object file if the all the dependencies are older than the object file then make will not execute.
+<-----------------------------------------------------
+----------------------------------------------------->
+b.
+$@ : give name of the file that is being generated.
+$< : it gives the first dependency.
+$^ : give all the dependency.
+<---------------------------------------------------
+------------------------------------------------------->
+c.To compile a program that contains multiple makefiles,
+we need to write a main makefile that executes the makefiles for all the modules.
+like we have two make file makefile.nix and makefile.win
+this main make file will contain
+win:
+  make -f makefile.win
+nix:
+  make -f makefile.nix
+<------------------------------------------------------
+-------------------------------------------------------->
+d.
+source code.
+assign.c---------------
+#include "assign.h"
+int main ()
+{int n;
+printf("enter a number to find it's squareroot : ");
+scanf("%d",&n);
+printf("square root is %f\n",sqrt(n));
+}
+"--Warning: whenever you use math library function use -lm when compiling--"
+assign.h----------------------------
+#include<stdio.h>
+#include<math.h>
+
+
+# makefile--------------------------------
+
+CC := gcc
+CFLAGS := -Wall
+SOURCES := assign.h asign.c
+#libraries to link with
+LDLIBS :=-lm
+OUT_FILE := a.out
+build: $(SOURCES)
+	$(CC) $(CFLAGS) -o $(OUT_FILE) $(SOURCES) $(LDLIBS)
+
+clean:
+	rm -f $(OUT_FILE)
+
+rebuild: clean build
+
+all: build
